@@ -5,9 +5,9 @@ function cloneCard(dataElement){
     clonedCard.getElementsByClassName("card-title")[0].innerText = `Community Area: ${dataElement.community_area_name}` 
     clonedCard.getElementsByClassName("card-subtitle")[0].innerText = `Address: ${dataElement.address}`
 
-    let cardText = dataElement.pin;
+    let cardText = `Pin: ${dataElement.pin} \n Square Footage ${dataElement.sq_ft} \n Ward Number: ${dataElement.ward}`
 
-    clonedCard.getElementsByClassName("card-text")[0].innerText = `Pin: ${cardText}`
+    clonedCard.getElementsByClassName("card-text")[0].innerText = cardText
 
     var rowRef = document.getElementsByClassName("row")
     rowRef[0].appendChild(clonedCard)
