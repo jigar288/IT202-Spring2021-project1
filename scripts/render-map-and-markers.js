@@ -34,18 +34,11 @@ function renderLibraryData(apiURL, map){
         let i;
         for (i = 0; i < result.length ; i++) {
             const currentProperty = result[i]
-            const community_area_name = currentProperty.community_area_name
-            const address = currentProperty.address;
-            const squareFootage = currentProperty.sq_ft;
 
-            const infoWindowContent = `<p>community_area_name: ${community_area_name}</p>
-                                       <p>address: ${address}</p>
-                                       <p>squareFootage: ${squareFootage}</p>`
-
-            console.info(infoWindowContent)
-
-
-
+            const infoWindowContent = `<p>community_area_name: ${currentProperty.community_area_name}</p>
+                                       <p>address: ${currentProperty.address}</p>
+                                       <p>squareFootage: ${currentProperty.sq_ft}</p>
+                                       <p>pin: ${currentProperty.pin}</p>`
 
             if(currentProperty.location.latitude == undefined || currentProperty.location.longitude == undefined)
                 continue            
