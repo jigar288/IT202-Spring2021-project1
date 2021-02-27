@@ -1,7 +1,7 @@
 function loadHomePage(){
     let currentLocation = document.location.pathname
 
-    if(currentLocation == '/'){
+    if(currentLocation == '/' || currentLocation == '/IT202-Spring2021-project1/'){
         let homePage = document.querySelector('.home-tab')
         homePage.style.display = 'block'
     }
