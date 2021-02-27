@@ -9,42 +9,53 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <title>Chicago City-Owned Land Inventory</title>
+
+    <style>
+      .content {
+        display: none;
+      }
+    </style>
+
+
+    <link rel="stylesheet" href="./styles/map-styles.css">
+    <script src="./scripts/render-map-and-markers.js"></script>
+
+    
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="./index.html">Chicago City-Owned Land Inventory</a>
+        <div class="navbar-brand">Chicago City-Owned Land Inventory</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html">Home</a>
+            <li class="nav-item">
+              <a class="nav-link" tab-name="home-tab">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./form.html">Form</a>
+              <a class="nav-link" tab-name="form-tab">Form</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./data.html">Data</a>
+              <a class="nav-link" tab-name="data-tab">Data</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./map.html">Map</a>
+                <a class="nav-link" tab-name="map-tab">Map</a>
             </li>            
             <li class="nav-item">
-                <a class="nav-link" href="./about.html">About</a>
+                <a class="nav-link" tab-name="about-tab">About</a>
             </li>               
           </ul>
         </div>
       </nav>
 
     
-      <br>
+      
 
 
-      <div class="container-fluid">
+      <div class="container-fluid home-tab content">
         <h1>Home Page</h1>
         
-
         <p>This app display data about land inventory that is owned by the city of chicago in a nice format. The data is provided by Chicago Department of Planning and Development</p>
         <p>If you want to learn more about the dataset please visit the official <a href="https://data.cityofchicago.org/Community-Economic-Development/City-Owned-Land-Inventory/aksk-kvfp"> Dataset website</a></p>
         
@@ -53,11 +64,67 @@
         <p>Navigate using the bar at the top. In order to search for specific data use the form. Otherwise you can view unfiltered data in the data tab.</p>
         <p>Click on the map tab if you want to view the data in a nicer mapped format to get a better sense of approximate locations of land</p>
   
-  
-      </div>          
+      </div>         
+      
       
 
-    
+      <div class="container-fluid about-tab content">
+        
+        <h1>About Page</h1>
+  
+        <h5>This app allows users to view land inventory owned by the city of Chicago. User can view either in list format or map format</h5>
+        <h5>App Developer: Jigar Patel</h5>
+  
+  
+      </div>        
+      
+      
+      <div class="container-fluid form-tab content">
+        
+        <h1>Form Page</h1>
+
+        <form>
+          <div class="mb-3">
+            <label for="wardNumberInput " class="form-label">Ward Number</label>
+            <input type="number" class="form-control" id="wardNumberInput " aria-describedby="emailHelp">
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>        
+  
+
+      </div>          
+      
+      
+
+      <div class="container-fluid data-tab content">
+        <h1>Data Page</h1>
+
+        <div class="row">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">
+                  This is default text for the card description
+                </p>
+              </div>
+            </div>
+        </div>
+      </div>   
+
+      
+      <div class="map-tab content" id="map"></div>      
+      
+    <script src="./scripts/app-shell-logic.js"></script>
+
+    <script src="./scripts/render-data.js"></script>
+
+
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDez9hG2WCNQWn3jF0r4GXa-xOrsqZ8ptc&callback=initMap&libraries=&v=weekly"
+    async>
+    </script>    
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
    

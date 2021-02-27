@@ -20,16 +20,19 @@ function createMaker(coordinates, infoWindowContent, map){
 
 }
 
-function renderLibraryData(apiURL, map){
+function renderLandData(apiURL, map){
     
     var requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
 
+    console.log('in ')
+
     fetch(apiURL, requestOptions)
     .then(response => response.json())
     .then(result => {
+
 
         let i;
         for (i = 0; i < result.length ; i++) {
@@ -40,7 +43,7 @@ function renderLibraryData(apiURL, map){
                                        <p>squareFootage: ${currentProperty.sq_ft}</p>
                                        <p>pin: ${currentProperty.pin}</p>`
 
-            if(currentProperty.location.latitude == undefined || currentProperty.location.longitude == undefined)
+            if( currentProperty.location == undefined || currentProperty.location.latitude == undefined || currentProperty.location.longitude == undefined )
                 continue            
 
             // casting from string values to floats
@@ -60,6 +63,8 @@ function renderLibraryData(apiURL, map){
 
 function initMap() {
 
+  console.info('calling init map')
+
   //create initial map
   map = new google.maps.Map(document.getElementById("map"), {
     center: initialMapViewCoordinates,
@@ -68,7 +73,7 @@ function initMap() {
 
   var apiURL = "https://data.cityofchicago.org/resource/aksk-kvfp.json";
 
-  renderLibraryData(apiURL, map);
+  renderLandData(apiURL, map);
   
   
 
