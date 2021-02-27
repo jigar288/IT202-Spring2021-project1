@@ -1,7 +1,7 @@
 function cloneCard(dataElement){
-    var cardReference = document.getElementsByClassName("card")
-    
-    var clonedCard = cardReference[0].cloneNode(true)
+    let cardReference = document.getElementsByClassName("card")
+    let clonedCard = cardReference[0].cloneNode(true)
+
     clonedCard.getElementsByClassName("card-title")[0].innerText = `Community Area: ${dataElement.community_area_name}` 
     clonedCard.getElementsByClassName("card-subtitle")[0].innerText = `Address: ${dataElement.address}`
 
@@ -9,13 +9,25 @@ function cloneCard(dataElement){
 
     clonedCard.getElementsByClassName("card-text")[0].innerText = cardText
 
-    var rowRef = document.getElementsByClassName("row")
+    let rowRef = document.getElementsByClassName("row")
     rowRef[0].appendChild(clonedCard)
 }
 
-function renderLibraryData(apiURL){
+function removePreviousCards(){
+    let cardReference = document.getElementsByClassName("card")
+
+    let i;
+    for(i = 1; i < cardReference.length; i++){
+        console.log('removing ' + i  )
+        const card = cardReference[i]
+        card.style.display = 'none'
+    }
     
-    var requestOptions = {
+}
+
+function renderListViewData(apiURL){
+    
+    let requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
@@ -23,21 +35,39 @@ function renderLibraryData(apiURL){
     fetch(apiURL, requestOptions)
     .then(response => response.json())
     .then(result => {
+
+        removePreviousCards()
+        
         result.forEach(element => {
+            console.log('cloning loop')
             cloneCard(element)
         });
 
         var cardReference = document.getElementsByClassName("card")
-        cardReference[0].style.display = "none"
+        cardReference[0].remove()      
+
     })
-    .catch(error => console.log('error', error));        
+    .catch(error => 
+        console.log('error', error)
+    );        
     
 }
 
-var apiURL = "https://data.cityofchicago.org/resource/aksk-kvfp.json";
+let apiURL = 'https://data.cityofchicago.org/resource/aksk-kvfp.json';
 
-renderLibraryData(apiURL);
+renderListViewData(apiURL);
 
+document.querySelector('#searchBtn').addEventListener('click', (event) => {
+    event.preventDefault()
+    const wardNumberInput = document.querySelector('input').value;
+    const wardNumber = parseInt(wardNumberInput)
+    const apiUrlWithWard = `https://data.cityofchicago.org/resource/aksk-kvfp.json?ward=${wardNumber}`;
+    renderListViewData(apiUrlWithWard)
 
+    hideAllElements();
+    const tabContents = document.querySelector(`.data-tab`);
+    tabContents.style.display = 'block'
+
+})
 
 
